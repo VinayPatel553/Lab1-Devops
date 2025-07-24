@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .todo-list {
+            margin-top: 30px;
+        }
+
+        .todo-item {
+            background-color: #f9f9f9;
+            border-left: 4px solid #4CAF50;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .todo-item h4 {
+            margin: 0 0 5px 0;
+        }
+
+        .todo-item p {
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>To-Do List</h2>
+    <form id="todo-form">
+        <label for="item-name">Item Name</label>
+        <input type="text" id="item-name" name="item-name" required>
+
+        <label for="item-desc">Item Description</label>
+        <textarea id="item-desc" name="item-desc" rows="4" required></textarea>
+
+        <button type="submit">Add To-Do</button>
+    </form>
+
+    <div class="todo-list" id="todo-list">
+        <!-- To-Do items will appear here -->
+    </div>
+</div>
+
+<script>
+    const form = document.getElementById('todo-form');
+    const todoList = document.getElementById('todo-list');
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const itemName = document.getElementById('item-name').value.trim();
+        const itemDesc = document.getElementById('item-desc').value.trim();
+
+        if (itemName && itemDesc) {
+            const todoItem = document.createElement('div');
+            todoItem.classList.add('todo-item');
+
+            todoItem.innerHTML = `
+                <h4>${itemName}</h4>
+                <p>${itemDesc}</p>
+            `;
+
+            todoList.appendChild(todoItem);
+
+            form.reset(); // clear the form
+        }
+    });
+</script>
+
+</body>
+</html>
